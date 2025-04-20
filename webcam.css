@@ -1,0 +1,17 @@
+*{
+    background-color: black;
+}
+#snap{
+    display: flex;
+    background-color: lightskyblue;
+    color: black;
+    align-items: center;
+    text-decoration:dotted;
+    animation:linear;
+    max-width: 100px;
+    cursor: inherit;
+    
+}
+.controller{
+    border-radius: 10 10 10 10;
+}

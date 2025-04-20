@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #1e1e1e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header .logo h1 {
+    font-size: 24px;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav ul li {
+    list-style: none;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #00bfff;
+}
+
+/* Main Content */
+main {
+    margin-top: 70px; /* Adjusted to account for fixed header */
+    padding: 20px;
+}
+
+.movie-shows {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.movie-shows h2 {
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card .placeholder {
+    background-color: #ddd;
+    height: 150px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 18px;
+}
+/* Footer */
+.footer {
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+    font-size: 14px;
+}

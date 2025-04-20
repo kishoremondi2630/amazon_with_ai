@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Capture with Alert and Submit</title>
+  <style>
+    h1{
+        color: #007bff;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+    video, img {
+      display: block;
+      margin: 10px auto;
+      width: 610px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .photo-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .photo-box {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+      background-color: gray;
+    }
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .delete-icon {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background-color: rgba(255, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .capture-button {
+      position: relative;
+      margin-top: -50px;
+      margin-left: 600px;
+    }
+    .capture-button button {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: none;
+      background-color: #007bff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+    .capture-button button:active {
+      transform: scale(0.95);
+    }
+    .capture-button svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+    .action-buttons {
+      margin-top: 10px;
+    }
+    .action-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn {
+      background-color: #4caf50;
+      color: white;
+    }
+    .retake-btn {
+      background-color: #f44336;
+      color: white;
+    }
+    .final-submit-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .final-submit-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>Amazon With AI</h1>
+  <video id="camera" autoplay playsinline></video>
+  <img id="preview" style="display: none;" alt="" >
+  <div class="capture-button">
+    <button id="capture-photo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2a9.996 9.996 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A9.996 9.996 0 0 0 12 2zm0 18c-4.41 0-8-3.59-8-8a8 8 0 0 1 16 0c0 4.41-3.59 8-8 8zm0-11a3 3 0 0 0-3 3 3 3 0 0 0 6 0 3 3 0 0 0-3-3z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="action-buttons" id="actions" style="display: none;">
+    <button class="submit-btn" id="submit-photo">Submit</button>
+    <button class="retake-btn" id="retake-photo">Retake</button>
+  </div>
+  <div class="photo-boxes">
+    <div class="photo-box" id="box-1"></div>
+    <div class="photo-box" id="box-2"></div>
+    <div class="photo-box" id="box-3"></div>
+    <div class="photo-box" id="box-4"></div>
+    <div class="photo-box" id="box-5"></div>
+  </div>
+  <button class="final-submit-btn" id="final-submit">SUBMIT</button>
+
+  <script>
+    const video = document.getElementById('camera');
+    const preview = document.getElementById('preview');
+    const captureButton = document.getElementById('capture-photo');
+    const actions = document.getElementById('actions');
+    const submitButton = document.getElementById('submit-photo');
+    const retakeButton = document.getElementById('retake-photo');
+    const finalSubmitButton = document.getElementById('final-submit');
+    const photoBoxes = Array.from(document.querySelectorAll('.photo-box'));
+    let photoCount = 0;
+    let currentPhoto = null;
+
+    // Access the camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((error) => {
+        console.error('Camera access denied:', error);
+      });
+
+    // Capture photo
+    captureButton.addEventListener('click', () => {
+      if (photoCount >= 5) {
+        alert('You can only take up to 5 photos!');
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext('2d');
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      currentPhoto = canvas.toDataURL('image/png');
+      preview.src = currentPhoto;
+      preview.style.display = 'block';
+      video.style.display = 'none';
+      actions.style.display = 'block';
+    });
+
+    // Submit photo
+    submitButton.addEventListener('click', () => {
+      if (currentPhoto && photoCount < 5) {
+        const img = document.createElement('img');
+        img.src = currentPhoto;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-icon';
+        deleteButton.innerText = '✕';
+        deleteButton.addEventListener('click', () => {
+          const boxIndex = photoBoxes.findIndex(box => box.contains(deleteButton));
+          if (boxIndex > -1) {
+            photoBoxes[boxIndex].innerHTML = '';
+            for (let i = boxIndex; i < photoCount - 1; i++) {
+              photoBoxes[i].innerHTML = photoBoxes[i + 1].innerHTML;
+              photoBoxes[i + 1].innerHTML = '';
+            }
+            photoCount--;
+          }
+        });
+
+        const box = photoBoxes[photoCount];
+        box.appendChild(img);
+        box.appendChild(deleteButton);
+
+        photoCount++;
+        currentPhoto = null;
+        preview.style.display = 'none';
+        video.style.display = 'block';
+        actions.style.display = 'none';
+      }
+    });
+
+    // Retake photo
+    retakeButton.addEventListener('click', () => {
+      currentPhoto = null;
+      preview.style.display = 'none';
+      video.style.display = 'block';
+      actions.style.display = 'none';
+    });
+
+    // Final Submit button logic
+    finalSubmitButton.addEventListener('click', () => {
+      if (photoCount < 3) {
+        alert('FOR BEST RESULTS, CAPTURE MIN 3 PHOTOS');
+      } else {
+        window.location.href="./details_popup.html"
+      }
+    });
+  </script>
+
+</body>
+</html>

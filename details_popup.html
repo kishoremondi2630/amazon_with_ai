@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon with AI</title>
+  <link rel="stylesheet" href="./details_popup.css">
+</head>
+<body>
+
+<!-- Main Content Box -->
+<div class="form-container">
+  <h2>Amazon with AI</h2>
+
+  <!-- Gender Selection -->
+  <div class="form-section">
+    <label for="gender">Gender</label>
+    <div class="gender-options">
+      <button class="gender-option" id="male" onclick="selectGender('male')"> <i class="fa-duotone fa-solid fa-person fa-flip"></i> Male</button>
+      <button class="gender-option" id="female" onclick="selectGender('female')">Female</button>
+    </div>
+  </div>
+
+  <!-- Height Input with Help Button -->
+  <div class="form-section">
+    <label for="height">Height (cm)</label>
+    <input type="number" id="height" placeholder="Enter height">
+    <button class="help-btn" id="heightHelpBtn">?</button>
+  </div>
+
+  <!-- Weight Input -->
+  <div class="form-section">
+    <label for="weight">Weight (kg)</label>
+    <input type="number" id="weight" placeholder="Enter weight">
+  </div>
+
+  <!-- Skin Tone Input -->
+  <div class="form-section">
+    <label for="skin-tone">Skin Tone</label>
+    <input type="text" id="skin-tone" placeholder="Enter skin tone">
+  </div>
+
+  <!-- Submit Button -->
+ <a href="./webcam.html"> <button id="submitBtn" class="submit-btn">Next</button></a>
+</div>
+
+<!-- Help Popup -->
+<div id="helpPopup" class="help-popup">
+  <div class="help-popup-content">
+    <p>1 Feet = 30.48 CM</p>
+    <button id="closeHelpBtn" class="close-btn">OK</button>
+  </div>
+</div>
+
+<script src="./details_popup.js"></script>
+</body>
+</html>
