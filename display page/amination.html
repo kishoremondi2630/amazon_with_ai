@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SMPLX Rotation</title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
+    import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/controls/OrbitControls.js';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1.5);
+    scene.add(light);
+
+    const loader = new GLTFLoader();
+    let model;
+    loader.load('smplx_model.glb', function(gltf) {
+      model = gltf.scene;
+      model.scale.set(1.5, 1.5, 1.5);
+      scene.add(model);
+    });
+
+    camera.position.set(0, 1.5, 5);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      if (model) {
+        model.rotation.y += 0.005; // 🌟 Slow rotation
+      }
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

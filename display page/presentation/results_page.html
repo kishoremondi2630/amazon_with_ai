@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results with amazon with ai</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+      transition: 0.3s ease;
+    }
+    .product-card:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .brand {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .product-title {
+      color: #333;
+      font-size: 15px;
+      margin: 5px 0;
+    }
+    .rating {
+      color: #ffa41c;
+      font-size: 14px;
+    }
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+    .delivery {
+      color: #007600;
+      font-size: 13px;
+    }
+    .add-btn {
+      background-color: #f0c14b;
+      border: 1px solid #a88734;
+      padding: 5px 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Results with Amazon with AI</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="./assets/shirt-1.JPEG" alt="Shirt 1">
+      <div class="brand">Urbano Fashion</div>
+      <div class="product-title">Men's Cotton Full Sleeve Shirt</div>
+      <div class="rating">★★★★☆ (25)</div>
+      <div class="price">₹689 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹2299</span></div>
+      <div class="delivery">FREE delivery Thu, 24 Apr</div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+    <div class="product-card">
+      <img src="./assets/shirt-10.JPEG" alt="Shirt 2">
+      <div class="brand">Arvind</div>
+      <div class="product-title">Solid Twill Formal Shirt</div>
+      <div class="rating">★★★★★ (40)</div>
+      <div class="price">₹854 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1999</span></div>
+      <div class="delivery">FREE delivery Mon, 21 Apr</div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+    <div class="product-card">
+      <img src="./assets/shirt-11.JPEG" alt="Shirt 3">
+      <div class="brand">Allen Solly</div>
+      <div class="product-title">Men's Regular Fit Printed Shirt</div>
+      <div class="rating">★★★★☆ (18)</div>
+      <div class="price">₹999 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+      <div class="delivery">FREE delivery Mon, 21 Apr</div>
+      <button class="add-btn">Add to cart</button>
+    </div>
+    <div class="product-card">
+        <img src="./assets/shirt-12.JPEG" alt="Shirt 3">
+        <div class="brand">U.S. POLO ASSN.</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (29)</div>
+        <div class="price">₹894 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-13.JPEG" alt="Shirt 3">
+        <div class="brand">USPA</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (32)</div>
+        <div class="price">₹749 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Wed, 23 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-14.JPEG" alt="Shirt 3">
+        <div class="brand">MUFTI</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (23)</div>
+        <div class="price">₹1024 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-15.JPEG" alt="Shirt 3">
+        <div class="brand">HIGHLANDER</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (80)</div>
+        <div class="price">₹659 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Thu, 24 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-16.JPEG" alt="Shirt 3">
+        <div class="brand">DENNIS LINGO</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (19)</div>
+        <div class="price">₹549 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-2.JPEG" alt="Shirt 3">
+        <div class="brand">WROGN</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (92)</div>
+        <div class="price">₹654 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-3.JPEG" alt="Shirt 3">
+        <div class="brand">METRONAUT</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (62)</div>
+        <div class="price">₹329 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-4.JPEG" alt="Shirt 3">
+        <div class="brand">ALLEN SOLLY</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (29)</div>
+        <div class="price">₹843 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-5.JPEG" alt="Shirt 3">
+        <div class="brand">TANIP</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (76)</div>
+        <div class="price">₹469 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-6.JPEG" alt="Shirt 3">
+        <div class="brand">Allen Solly</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (70)</div>
+        <div class="price">₹1022 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-7.JPEG" alt="Shirt 3">
+        <div class="brand">VOROXY</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (81)</div>
+        <div class="price">₹876 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-8.JPEG" alt="Shirt 3">
+        <div class="brand">PETER ENGLAND</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (29)</div>
+        <div class="price">₹1207 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Thu, 24 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+      <div class="product-card">
+        <img src="./assets/shirt-9.JPEG" alt="Shirt 3">
+        <div class="brand">SNITCH</div>
+        <div class="product-title">Men's Regular Fit Printed Shirt</div>
+        <div class="rating">★★★★☆ (74)</div>
+        <div class="price">₹999 <span style="text-decoration: line-through; color: gray; font-size: 12px;">₹1799</span></div>
+        <div class="delivery">FREE delivery Mon, 21 Apr</div>
+        <button class="add-btn">Add to cart</button>
+      </div>
+  </div>
+</body>
+</html>

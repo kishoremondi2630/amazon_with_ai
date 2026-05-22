@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazon with AI</title>
+  <link rel="stylesheet" href="/static/details_popup.css" />
+  
+  <!-- Model Viewer Script -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    .model-preview {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 500px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .model-preview h3 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Amazon with AI</h2>
+  
+  <form id="modelForm" enctype="multipart/form-data">
+    <!-- Gender Selection -->
+    <div class="form-section1">
+      <label for="gender">Gender</label>
+      <div class="gender-options">
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+      </div>
+    </div>
+
+    <!-- Height Input with Help Button -->
+    <div class="form-section">
+      <label for="height">Height (cm)</label>
+      <input type="number" name="height" id="height" placeholder="Enter height" required />
+      <button class="help-btn" id="heightHelpBtn" type="button">?</button>
+    </div>
+
+    <!-- Weight Input -->
+    <div class="form-section">
+      <label for="weight">Weight (kg)</label>
+      <input type="number" name="weight" id="weight" placeholder="Enter weight" required />
+    </div>
+
+    <!-- Skin Tone Input -->
+    <!-- <div class="form-section">
+      <label for="skinTone">Skin Tone</label>
+      <select name="skin_tone" id="skinTone" required>
+        <option value="fair">Fair</option>
+        <option value="medium">Medium</option>
+        <option value="dark">Dark</option>
+      </select>      
+    </div> -->
+
+    <!-- Age Input -->
+    <div class="form-section">
+      <label for="age">Age</label>
+      <input type="number" name="age" id="age" placeholder="Enter age" required />
+    </div>
+
+    <!-- Image Uploads -->
+    <label>Upload Front Image</label>
+    <input type="file" id="frontImage" name="front_image" accept="image/*" required><br>
+    
+    <label>Upload Left Image</label>
+    <input type="file" id="leftImage" name="left_image" accept="image/*" required><br>
+    
+    <label>Upload Right Image</label>
+    <input type="file" id="rightImage" name="right_image" accept="image/*" required><br>
+
+    <!-- Submit Button -->
+    <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
+  </form>
+</div>
+
+<!-- Model Display Section -->
+<div id="modelPreview" class="model-preview">
+  <h3>Your Generated Model</h3>
+  <model-viewer id="modelViewer" alt="3D Model" auto-rotate camera-controls></model-viewer>
+</div>
+
+<!-- Help Popup -->
+<div id="helpPopup" class="help-popup" style="display: none;">
+  <div class="help-popup-content">
+    <p>1 Feet = 30.48 CM</p>
+    <button id="closeHelpBtn" class="close-btn">OK</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('modelForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const gender = document.querySelector('input[name="gender"]:checked')?.value;
+  const height = document.getElementById('height').value;
+  const weight = document.getElementById('weight').value;
+  const age = document.getElementById('age').value;
+
+  const frontImage = document.getElementById('frontImage').files[0];
+  const leftImage = document.getElementById('leftImage').files[0];
+  const rightImage = document.getElementById('rightImage').files[0];
+
+  if (!gender || !height || !weight ||  !age || !frontImage || !leftImage || !rightImage) {
+    alert('❗ Please fill all fields and upload all 3 images!');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('gender', gender);
+  formData.append('height', height);
+  formData.append('weight', weight);
+  formData.append('age', age);
+  formData.append('front_image', frontImage);
+  formData.append('left_image', leftImage);
+  formData.append('right_image', rightImage);
+
+  try {
+    const response = await fetch('http://127.0.0.1:5000/generate-model', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.model_path) {
+      document.getElementById('modelViewer').src = result.model_path;
+      document.getElementById('modelPreview').style.display = 'block';
+      alert('✅ Model generated successfully!');
+    } else {
+      alert(result.message || result.error || 'Model generation failed.');
+    }
+  } catch (err) {
+    alert('⚠️ Error occurred: ' + err.message);
+  }
+});
+
+// Help popup
+document.getElementById('heightHelpBtn').addEventListener('click', function () {
+  document.getElementById('helpPopup').style.display = 'flex';
+});
+
+document.getElementById('closeHelpBtn').addEventListener('click', function () {
+  document.getElementById('helpPopup').style.display = 'none';
+});
+</script>
+
+</body>
+</html>
